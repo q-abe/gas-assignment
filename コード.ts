@@ -29,4 +29,10 @@ function myFunction() {
         }
         console.log("タブ名一覧",tabNames)
     }
+
+    //共通関数: ヘッダーと分離する
+    const separateData = <T>(array: T[][]) => {
+        const [headers, ...records] = array;
+        return { headers, records };
+    };
 }
