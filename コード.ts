@@ -18,4 +18,15 @@ function myFunction() {
     const getSheet = (sheetName: string) => {
         return sheet.getSheetByName(sheetName).getDataRange().getValues();
     }
+
+    // シートのタブ名を取得する関数
+    const getTabNames = () => {
+        const tabNames = [];
+        const spreadSheet = sheet.getSheets()
+        for (let i = 0; i < spreadSheet.length; i++) {
+            const tabName = spreadSheet[i].getName();
+            tabNames.push(tabName)
+        }
+        console.log("タブ名一覧",tabNames)
+    }
 }
