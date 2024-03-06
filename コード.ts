@@ -20,7 +20,7 @@ function myFunction() {
     const sheet: GoogleAppsScript.Spreadsheet.Spreadsheet = SpreadsheetApp.openById("1yr5W67RsjoES2hu_ACoLBJfw-DwAqjyidGb8h0x9Ufg");
 
     // シートの値を取得する関数
-    const getSheet = (sheetName: string) => {
+    const getSheet = (sheetName: string):[][] => {
         return sheet.getSheetByName(sheetName).getDataRange().getValues();
     }
 
@@ -63,12 +63,10 @@ function myFunction() {
     };
 
     //シートの情報を取得
-    const prodData: product[][] = getSheet("商品");
-    const stoData: stock[][] = getSheet("在庫");
-    const cateNameData: category[][] = getSheet("カテゴリー");
-    const prodCatData: prodCategory[][] = getSheet("商品_カテゴリー");
-    const resultData = getSheet("結果");
-
+    const prodData: Product[][] = getSheet("商品");
+    const stoData: Stock[][] = getSheet("在庫");
+    const cateNameData: Category[][] = getSheet("カテゴリー");
+    const prodCatData: ProdCategory[][] = getSheet("商品_カテゴリー");
 
     const prodDataSeparated = separateData(prodData);
     const stoDataSeparated = separateData(stoData);
