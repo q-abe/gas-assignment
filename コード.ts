@@ -45,7 +45,7 @@ function myFunction() {
         if (isAllString) {
             return { headers, records };
         }
-        throw new Error("header is not string"); //ToDo:どこでエラーかわかるように
+        throw new Error(`Some of [${headers}] are not strings`);
     };
 
     //共通関数: ヘッダーをプロパティ名としてオブジェクトに変換する

@@ -4,8 +4,8 @@
     "lib": ["dom", "dom.iterable", "esnext"],　//使用するライブラリ指定。
     "allowJs": true,　
     "skipLibCheck": true,
-    "strict": true, //厳格な型チェック
-    "noEmit": true,　//コンパイル後ファイルの生成をしない。
+//    "strict": true, //厳格な型チェック
+    "noEmit": false,　//コンパイル後ファイルの生成をしない。
     "esModuleInterop": true,
     "module": "esnext",
     "moduleResolution": "bundler",
