@@ -1,8 +1,8 @@
-type product = Record<"productId" | "name" | "brandName", string>;
-type category = Record<"categoryCode" | "categoryName", string>;
-type prodCategory = Record<"productId" | "categoryCode", string>;
+type Product = Record<"productId" | "name" | "brandName", string>;
+type Category = Record<"categoryCode" | "categoryName", string>;
+type ProdCategory = Record<"productId" | "categoryCode", string>;
 
-type stock = {
+type Stock = {
     skuCode: string;
     productId: string;
     color: string;
@@ -10,9 +10,9 @@ type stock = {
     stock: number;
 };
 
-type value = string | number;
-type EmptyObject = {
-    [key: string]: value;
+type Value = string | number;
+type Dictionary = {
+    [key: string]: Value;
 };
 
 function myFunction() {
@@ -37,7 +37,7 @@ function myFunction() {
 
     //共通関数: ヘッダーと分離する
 
-    const separateData = (array: value[][]) => {
+    const separateData = (array: Value[][]) => {
         const [ headers, ...records ] = array;
         const isAllString = headers.every((header): header is string => {
             return typeof header === 'string';
@@ -49,12 +49,12 @@ function myFunction() {
     };
 
     //共通関数: ヘッダーをプロパティ名としてオブジェクトに変換する
-    const convertObj = <T extends value>(
+    const convertObj = <T extends Value>(
         headers: string[],
         records: T[][]
-    ): EmptyObject[] => {
+    ): Dictionary[] => {
         return records.map((record) => {
-            const obj: EmptyObject = {};
+            const obj: Dictionary = {};
             headers.forEach((header, index) => {
                 obj[header] = record[index];
             });
