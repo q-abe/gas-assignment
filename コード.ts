@@ -92,4 +92,21 @@ function myFunction() {
         prodCatDataSeparated.headers,
         prodCatDataSeparated.records
     );
+
+    //商品と在庫を結合
+    const prodAddSto = () => {
+        return stoObjs.map((stoObj) => {
+            const prodObj = prodObjs.find((prodObj) =>
+                prodObj.productId === stoObj.productId);
+            return {
+                productId: prodObj.productId,
+                name: prodObj.name,
+                brandName: prodObj.brandName,
+                skuCode: stoObj.skuCode,
+                color: stoObj.color,
+                size: stoObj.size,
+                stock: stoObj.stock
+            }
+        })
+    }
 }
