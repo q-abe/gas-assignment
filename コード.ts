@@ -36,15 +36,22 @@ function myFunction() {
     }
 
     //共通関数: ヘッダーと分離する
-    const separateData = <T>(array: T[][]) => {
+
+    const separateData = (array: value[][]) => {
         const [ headers, ...records ] = array;
-        return { headers, records };
+        const isAllString = headers.every((header): header is string => {
+            return typeof header === 'string';
+        })
+        if (isAllString) {
+            return { headers, records };
+        }
+        throw new Error("header is not string"); //ToDo:どこでエラーかわかるように
     };
 
     //共通関数: ヘッダーをプロパティ名としてオブジェクトに変換する
     const convertObj = <T extends value>(
-        headers: T[],
-        records: T[][],
+        headers: string[],
+        records: T[][]
     ): EmptyObject[] => {
         return records.map((record) => {
             const obj: EmptyObject = {};
