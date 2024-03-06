@@ -1,0 +1,32 @@
+{
+  "compilerOptions": {
+    "target": "es5",　//コンパイルされるJSのバージョン
+    "lib": ["dom", "dom.iterable", "esnext"],　//使用するライブラリ指定。
+    "allowJs": true,　
+    "skipLibCheck": true,
+    "strict": true, //厳格な型チェック
+    "noEmit": true,　//コンパイル後ファイルの生成をしない。
+    "esModuleInterop": true,
+    "module": "esnext",
+    "moduleResolution": "bundler",
+    "resolveJsonModule": true,
+    "isolatedModules": true,
+    "jsx": "preserve",
+    "incremental": true,　//増分コンパイル
+    "types": [], //PJで使用される型定義ファイルの指定。
+    "paths": { //モジュールのエイリアスを設定する。
+      "@/*": ["./app/*"],
+      "@pages/*": ["./app/(pages)/*"],
+      "@schemas/*": ["./schemas/*"],
+      "@utils/*": ["./utils/*"],
+      "@server/*": ["./server/*"]
+    },
+    "plugins": [
+      {
+        "name": "next"
+      }
+    ]
+  },
+  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts"],　//コンパイル対象拡張子
+  "exclude": ["node_modules"]　//コンパイル除外
+}
