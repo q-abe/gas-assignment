@@ -61,4 +61,35 @@ function myFunction() {
             return obj;
         });
     };
+
+    //シートの情報を取得
+    const prodData: product[][] = getSheet("商品");
+    const stoData: stock[][] = getSheet("在庫");
+    const cateNameData: category[][] = getSheet("カテゴリー");
+    const prodCatData: prodCategory[][] = getSheet("商品_カテゴリー");
+    const resultData = getSheet("結果");
+
+
+    const prodDataSeparated = separateData(prodData);
+    const stoDataSeparated = separateData(stoData);
+    const cateDataSeparated = separateData(cateNameData);
+    const prodCatDataSeparated = separateData(prodCatData);
+
+    //オブジェクト変換
+    const prodObjs = convertObj(
+        prodDataSeparated.headers,
+        prodDataSeparated.records
+    );
+    const stoObjs = convertObj(
+        stoDataSeparated.headers,
+        stoDataSeparated.records
+    );
+    const cateNameObjs = convertObj(
+        cateDataSeparated.headers,
+        cateDataSeparated.records
+    );
+    const prodCateCodeObjs = convertObj(
+        prodCatDataSeparated.headers,
+        prodCatDataSeparated.records
+    );
 }
