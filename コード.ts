@@ -47,7 +47,7 @@ function myFunction() {
         throw new Error(`Some of [${headers}] are not strings`);
     };
 
-    //共通関数: ヘッダーをプロパティ名としてオブジェクトに変換する
+    //共通関数: ヘッダーをプロパティ名としてオブジェクトに変換する。
     const convertObj = <T extends Value>(
         headers: string[],
         records: T[][]
@@ -71,11 +71,12 @@ function myFunction() {
     const joinAsString = <T extends []>(arrayValue: T) => arrayValue.join(",");
 
 //シートの情報を取得する。
-const prodData: Product[][] = getSheet("商品");
-const stoData: Stock[][] = getSheet("在庫");
-const cateNameData: Category[][] = getSheet("カテゴリー");
-const prodCatData: ProdCategory[][] = getSheet("商品_カテゴリー");
+    const prodData: Product[][] = getSheet("商品");
+    const stoData: Stock[][] = getSheet("在庫");
+    const cateNameData: Category[][] = getSheet("カテゴリー");
+    const prodCatData: ProdCategory[][] = getSheet("商品_カテゴリー");
 
+// header行とセルを分離する。
     const prodDataSeparated = separateData(prodData);
     const stoDataSeparated = separateData(stoData);
     const cateDataSeparated = separateData(cateNameData);
