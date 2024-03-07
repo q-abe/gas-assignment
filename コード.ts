@@ -140,4 +140,7 @@ function myFunction() {
             }
         })
     }
+// 結合したカテゴリーシートからproductIdを取得して一意な配列に変換する。
+    const categoriesObjs = cateNameAddProdCate();
+    const uniArray = valueArray(categoriesObjs, "productId").filter(onlyUnique);
 }
