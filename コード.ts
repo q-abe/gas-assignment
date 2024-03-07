@@ -167,4 +167,30 @@ function myFunction() {
             }
         }).filter(Boolean)
     }
+
+//全てのデータの結果
+    const all = () => {
+        const prodStoObjs = prodAddSto()
+        const categoriesObjs = arrayCateCodes()
+
+        return prodStoObjs.map((prodStoObj) => {
+            const cate = categoriesObjs.find((categoriesObj) =>
+                categoriesObj.productId === prodStoObj.productId);
+
+            if (cate) {
+                return {
+                    productId: prodStoObj.productId,
+                    productName: prodStoObj.name,
+                    brandName: prodStoObj.brandName,
+                    categoryCode: cate.categoryCode,
+                    categories: cate.categoryName,
+                    skuCode: prodStoObj.skuCode,
+                    colorName: prodStoObj.color,
+                    sizeName: prodStoObj.size,
+                    stock: prodStoObj.stock,
+                    isSoldOut: Boolean(prodStoObj.stock)
+                }
+            }
+        })
+    }
 }
