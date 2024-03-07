@@ -36,7 +36,6 @@ function myFunction() {
     }
 
     //共通関数: ヘッダーと分離する
-
     const separateData = (array: Value[][]) => {
         const [ headers, ...records ] = array;
         const isAllString = headers.every((header): header is string => {
@@ -62,18 +61,27 @@ function myFunction() {
         });
     };
 
-    //シートの情報を取得
-    const prodData: Product[][] = getSheet("商品");
-    const stoData: Stock[][] = getSheet("在庫");
-    const cateNameData: Category[][] = getSheet("カテゴリー");
-    const prodCatData: ProdCategory[][] = getSheet("商品_カテゴリー");
+    //共通関数: 配列内のtargetを数える。
+    const duplicateCategories = (arrayValue, target) => {
+        return arrayValue.filter(value => value.match(target)
+        ).length;
+    }
+
+//共通関数: 配列をカンマ区切りにする。(上記に置き換わるかも)
+    const joinAsString = <T extends []>(arrayValue: T) => arrayValue.join(",");
+
+//シートの情報を取得する。
+const prodData: Product[][] = getSheet("商品");
+const stoData: Stock[][] = getSheet("在庫");
+const cateNameData: Category[][] = getSheet("カテゴリー");
+const prodCatData: ProdCategory[][] = getSheet("商品_カテゴリー");
 
     const prodDataSeparated = separateData(prodData);
     const stoDataSeparated = separateData(stoData);
     const cateDataSeparated = separateData(cateNameData);
     const prodCatDataSeparated = separateData(prodCatData);
 
-    //オブジェクト変換
+//オブジェクトに変換する。
     const prodObjs = convertObj(
         prodDataSeparated.headers,
         prodDataSeparated.records
@@ -91,7 +99,7 @@ function myFunction() {
         prodCatDataSeparated.records
     );
 
-    //商品と在庫を結合
+//商品と在庫を結合する。
     const prodAddSto = () => {
         return stoObjs.map((stoObj) => {
             const prodObj = prodObjs.find((prodObj) =>
