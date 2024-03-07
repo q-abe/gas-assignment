@@ -70,6 +70,12 @@ function myFunction() {
 //共通関数: 配列をカンマ区切りにする。(上記に置き換わるかも)
     const joinAsString = <T extends []>(arrayValue: T) => arrayValue.join(",");
 
+//共通関数: オブジェクトの配列から対象のvalueを取得する。
+    const valueArray = <T>(data: T[], targetKey: string) => {
+        return data.map(item => item[targetKey]
+        );
+    }
+    
 //シートの情報を取得する。
     const prodData: Product[][] = getSheet("商品");
     const stoData: Stock[][] = getSheet("在庫");
