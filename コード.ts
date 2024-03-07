@@ -75,7 +75,12 @@ function myFunction() {
         return data.map(item => item[targetKey]
         );
     }
-    
+
+    // 共通関数: 配列の要素を一意にする。
+    const onlyUnique = (value, index, array) => {
+        return array.indexOf(value) === index;
+    }
+
 //シートの情報を取得する。
     const prodData: Product[][] = getSheet("商品");
     const stoData: Stock[][] = getSheet("在庫");
