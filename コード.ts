@@ -127,4 +127,17 @@ function myFunction() {
             }
         })
     }
+
+//カテゴリーのシートを結合する。
+    const cateNameAddProdCate = () => {
+        return prodCateCodeObjs.map((prodCateCodeObj) => {
+            const codeMatching = cateNameObjs.find((cateNameObj) =>
+                prodCateCodeObj.categoryCode === cateNameObj.categoryCode);
+            return {
+                productId: prodCateCodeObj.productId,
+                categoryCode: codeMatching.categoryCode,
+                categoryName: codeMatching.categoryName
+            }
+        })
+    }
 }
