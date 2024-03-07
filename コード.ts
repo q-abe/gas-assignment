@@ -143,4 +143,28 @@ function myFunction() {
 // 結合したカテゴリーシートからproductIdを取得して一意な配列に変換する。
     const categoriesObjs = cateNameAddProdCate();
     const uniArray = valueArray(categoriesObjs, "productId").filter(onlyUnique);
+
+// 一意の配列に他要素を追加してオブジェクト化する。
+    const arrayCateCodes = () => {
+        return uniArray.map((uniqueValue) => {
+            const uniqueValueObj = {
+                productId: uniqueValue,
+                categoryCode: [],
+                categoryName: []
+            }
+            categoriesObjs.forEach((categoriesObj) => {
+                    if (uniqueValue === categoriesObj.productId) {
+                        uniqueValueObj.categoryCode.push(categoriesObj.categoryCode)
+                        uniqueValueObj.categoryName.push(categoriesObj.categoryName)
+                    }
+                }
+            )
+            const length = duplicateCategories(uniqueValueObj.categoryCode, "CAT020")
+            if (length <= 1) {
+                uniqueValueObj.categoryCode = joinAsString(uniqueValueObj.categoryCode)
+                uniqueValueObj.categoryName = joinAsString(uniqueValueObj.categoryName)
+                return uniqueValueObj
+            }
+        }).filter(Boolean)
+    }
 }
