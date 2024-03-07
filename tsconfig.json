@@ -1,6 +1,6 @@
 {
   "compilerOptions": {
-    "target": "es5",　//コンパイルされるJSのバージョン
+    "target": "es6",　//トランスパイルされるJSのバージョン
     "lib": ["dom", "dom.iterable", "esnext"],　//使用するライブラリ指定。
     "allowJs": true,　
     "skipLibCheck": true,
@@ -21,12 +21,8 @@
       "@utils/*": ["./utils/*"],
       "@server/*": ["./server/*"]
     },
-    "plugins": [
-      {
-        "name": "next"
-      }
-    ]
+    "plugins": []
   },
-  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts"],　//コンパイル対象拡張子
+  "include": ["**/*.ts"],　//コンパイル対象拡張子
   "exclude": ["node_modules"]　//コンパイル除外
 }
