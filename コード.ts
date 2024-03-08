@@ -191,6 +191,25 @@ function myFunction() {
                     isSoldOut: Boolean(prodStoObj.stock)
                 }
             }
-        })
+        }).filter(Boolean)
     }
+
+    //二次元配列に変換
+    const allObjs = all();
+
+    const arrayOfArray = () => {
+        const allArrayOf2D = []
+        allArrayOf2D.push(Object.keys(allObjs[0]))
+        allObjs.map((allObj) => {
+            allArrayOf2D.push(Object.values(allObj))
+        })
+        return allArrayOf2D
+    }
+
+    const lastColumn = arrayOfArray()[0].length;
+    const lastRow = arrayOfArray().length;
+
+    // シート"結果"にデータを書き込む
+    const resultSheet = sheet.getSheetByName("結果")
+    resultSheet.getRange(2, 1, lastRow, lastColumn).setValues(arrayOfArray())
 }
